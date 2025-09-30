@@ -1,5 +1,4 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -9,18 +8,17 @@ void fast_io() { ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 int main()
 {
     fast_io();
-    vector<int> arr(3);
-    vector<int> count(10, 0);
-    for(auto& i : arr) cin >> i;
+    vector<int> card(10, 0);
+    string number; cin >> number;
+    for(int i = 0; i < number.size(); i++) { card[number[i] - '0']++; }
+    
+    int sixAndNine = (card[6] + card[9] + 1) / 2;
+    card[6] = 0; card[9] = 0;
+    int max = *max_element(card.begin(), card.end());
 
-    int sum = arr[0] * arr[1] * arr[2];
-    string s_sum = to_string(sum);
-    for(int i = 0; i < s_sum.size(); i++) {
-        count[s_sum[i] - '0']++;
-    }
-
-    for(auto& i : count) cout << i << '\n';
-
+    if(max > sixAndNine) cout << max;
+    else cout << sixAndNine;
+    
     return 0;
 }
 
